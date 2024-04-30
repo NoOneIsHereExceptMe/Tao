@@ -1,4 +1,20 @@
-[gd_scene format=3 uid="uid://n0lnan63rnpj"]
+[gd_scene load_steps=6 format=3 uid="uid://n0lnan63rnpj"]
+
+[ext_resource type="Script" path="res://world.gd" id="1_1duia"]
+[ext_resource type="Texture2D" uid="uid://l0qk5bjdoa0b" path="res://Main.png" id="2_ispna"]
+[ext_resource type="BitMap" uid="uid://dx87wg4qupqir" path="res://image.png" id="3_5tw8x"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_g4uqd"]
+line_spacing = 5.0
+font_size = 26
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_u1i38"]
+line_spacing = 5.0
+font_size = 26
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
 
 [node name="WORLD" type="Control"]
 texture_filter = 1
@@ -8,11 +24,128 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_1duia")
 
-[node name="Button" type="Button" parent="."]
-layout_mode = 0
-offset_left = 16.0
-offset_top = 128.0
-offset_right = 144.0
-offset_bottom = 192.0
+[node name="Hunt" type="Control" parent="."]
+layout_mode = 1
+anchor_top = 0.128
+anchor_right = 0.28
+anchor_bottom = 0.384
+
+[node name="HuntButton" type="Button" parent="Hunt"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.02
+anchor_top = 0.256
+anchor_right = 0.26
+anchor_bottom = 0.384
+offset_left = 11.52
+offset_top = 31.232
+offset_right = 149.76
+offset_bottom = 77.848
+focus_mode = 0
 text = "HUNT"
+
+[node name="TextureButton" type="TextureButton" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.29
+anchor_top = 0.224
+anchor_right = 0.71
+anchor_bottom = 0.816
+offset_left = -1.52588e-05
+offset_bottom = -3.05176e-05
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+button_mask = 7
+texture_normal = ExtResource("2_ispna")
+texture_click_mask = ExtResource("3_5tw8x")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Auto" type="Control" parent="."]
+layout_mode = 1
+anchor_left = 0.02
+anchor_top = 0.432
+anchor_right = 0.26
+anchor_bottom = 0.592
+offset_right = -1.52588e-05
+
+[node name="AutoHunt" type="Control" parent="Auto"]
+anchors_preset = 0
+offset_right = 192.0
+offset_bottom = 40.0
+
+[node name="AutoHuntLabel" type="Label" parent="Auto/AutoHunt"]
+layout_mode = 0
+offset_right = 152.0
+offset_bottom = 36.0
+text = "Auto Hunt"
+label_settings = SubResource("LabelSettings_g4uqd")
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="AutoHuntToggle" type="CheckButton" parent="Auto/AutoHunt"]
+layout_mode = 0
+offset_left = 152.0
+offset_top = 8.0
+offset_right = 196.0
+offset_bottom = 32.0
+focus_mode = 0
+icon_alignment = 1
+expand_icon = true
+
+[node name="AutoClick" type="Control" parent="Auto"]
+anchors_preset = 0
+offset_top = 40.0
+offset_right = 192.0
+offset_bottom = 80.0
+
+[node name="AutoClickLabel" type="Label" parent="Auto/AutoClick"]
+layout_mode = 0
+offset_right = 152.0
+offset_bottom = 36.0
+text = "Auto Click"
+label_settings = SubResource("LabelSettings_g4uqd")
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="AutoClickToggle" type="CheckButton" parent="Auto/AutoClick"]
+layout_mode = 0
+offset_left = 152.0
+offset_top = 8.0
+offset_right = 196.0
+offset_bottom = 32.0
+focus_mode = 0
+icon_alignment = 1
+expand_icon = true
+
+[node name="Header" type="Control" parent="."]
+layout_mode = 1
+anchor_right = 1.0
+anchor_bottom = 0.128
+
+[node name="Label" type="Label" parent="Header"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -0.5
+offset_top = -11.5
+offset_right = 0.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "#||#"
+label_settings = SubResource("LabelSettings_u1i38")
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[connection signal="pressed" from="Hunt/HuntButton" to="." method="_on_hunt_button_pressed"]
+[connection signal="pressed" from="TextureButton" to="." method="_on_texture_button_pressed"]
